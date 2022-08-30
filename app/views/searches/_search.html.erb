@@ -1,3 +1,5 @@
+
+<% unless request.path.include?("chat") %>
 <% if user_signed_in? %>
   <div class="search_form text-center mt-1" >
     <%= form_with url: search_path, local: true, method: :get do |f| %>
@@ -7,4 +9,5 @@
       <%= f.submit "検索" %>
     <% end %>
   </div>
+<% end %>
 <% end %>
