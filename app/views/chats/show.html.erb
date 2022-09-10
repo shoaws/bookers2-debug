@@ -1,18 +1,26 @@
-<h2><%= @user.name %> さんとのチャット</h2>
-<table class="table text-center">
-    <tbody>
+<h2 class="text-center"><%= @user.name %> さんとのチャット</h2>
+<table class="table col-6 mx-auto container-fluid">
+    <tbody align="center">
       <% @chats.each do |chat| %>
-        <tr>
-          <td>
-            <%= chat.message %>
-          </td>
-        </tr>
+        <% if chat.user == @user %>
+          <tr class="row justify-content-start">
+            <td><%= chat.user.name %></td>
+            <td><%= chat.message %></td>
+          </tr>
+        <% else %>
+          <tr class="row justify-content-end">
+            <td><%= chat.user.name %></td>
+            <td><%= chat.message %></td>
+          </tr>
+        <% end %>
       <% end %>
   </tbody>
 </table>
 
-<%= form_with model: @chat do |f| %>
-  <%= f.text_field :message %>
-  <%= f.hidden_field :room_id %>
-  <% f.submit %>
-<% end %>
+<div class="text-center">
+  <%= form_with model: @chat do |f| %>
+    <%= f.text_field :message %>
+    <%= f.hidden_field :room_id %>
+    <% f.submit %>
+  <% end %>
+</div>
