@@ -5,6 +5,13 @@ class ChatsController < ApplicationController
     redirect_to request.referer
   end
 
+  def destroy
+    @room = Room.find(params[:room_id])
+    @chat = Chat.find(params[:id])
+    @chat.destroy
+    redirect_to request.referer
+  end
+
   def show
    @user = User.find(params[:id])
    rooms = current_user.user_rooms.pluck(:room_id)
