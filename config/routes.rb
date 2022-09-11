@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   resources :rooms, only: [:show] do
     resources :chats, only: [:create, :destroy]
   end
+  
+  resources :groups, except: [:destroy]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
