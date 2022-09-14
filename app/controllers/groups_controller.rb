@@ -9,6 +9,7 @@ class GroupsController < ApplicationController
   def show
     @book = Book.new
     @group = Group.find(params[:id])
+    @events = @group.events
   end
 
   def new

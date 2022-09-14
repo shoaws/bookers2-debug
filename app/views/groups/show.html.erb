@@ -14,6 +14,7 @@
                     <th>image</th>
                     <th>グループ名</th>
                     <th>紹介文</th>
+                    <th>メンバー</th>
                     <th colspan="3"></th>
                 </tr>
             </thead>
@@ -30,6 +31,7 @@
                     <td>
                       <% if @group.owner_id == current_user.id %>
                         <%= link_to 'Edit', edit_group_path(@group) %>
+                        <td><%= link_to'Notice an Event', new_group_event_path(@group) %></td>
                       <% elsif @group.users.include?(current_user) %>
                         <%= link_to 'Leave this group', group_path(@group), method: :delete, class: "btn btn-danger" %>
                       <% else %>
@@ -38,6 +40,27 @@
                     </td>
                 </tr>
             </tbody>
+        </table>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Content</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @events.each do |event| %>
+              <tr>
+                <td><%= event.title %></td>
+                <td><%= event.content %></td>
+                <% if @group.owner_id == current_user.id %>
+                <td><%= link_to 'Edit', edit_group_event_path(@group,event), class: "btn btn-success" %></td>
+                <td><%= link_to 'Destroy', group_event_path(event), method: :delete, class: "btn btn-danger" %></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
         </table>
     </div>
   </div>
