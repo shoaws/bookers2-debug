@@ -30,8 +30,8 @@
                     </td>
                     <td>
                       <% if @group.owner_id == current_user.id %>
-                        <%= link_to 'Edit', edit_group_path(@group) %>
-                        <td><%= link_to'Notice an Event', new_group_event_path(@group) %></td>
+                        <%= link_to 'Edit', edit_group_path(@group), class: "btn btn-success" %>
+                        <td><%= link_to'Notice an Event', new_group_event_path(@group), class: "btn btn-info" %></td>
                       <% elsif @group.users.include?(current_user) %>
                         <%= link_to 'Leave this group', group_path(@group), method: :delete, class: "btn btn-danger" %>
                       <% else %>
@@ -56,7 +56,7 @@
                 <td><%= event.content %></td>
                 <% if @group.owner_id == current_user.id %>
                 <td><%= link_to 'Edit', edit_group_event_path(@group,event), class: "btn btn-success" %></td>
-                <td><%= link_to 'Destroy', group_event_path(event), method: :delete, class: "btn btn-danger" %></td>
+                <td><%= link_to 'Destroy', group_event_path(@group,event), method: :delete, class: "btn btn-danger" %></td>
                 <% end %>
               </tr>
             <% end %>

@@ -1,11 +1,14 @@
 <div class='container'>
   <div class='row'>
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-  		<h1>Event</h1>
-  		<label>Title</label>
-  		<%= @event.title %>
-  		<label>Content</label>
-  		<%= @event.content %>
-  		<%= link_to 'Back', group_path(@group), class: "back" %>
+    <div class="col-sm-12 col-md-8 col-mt-8 col-lg-5 mt-10 px-5 px-sm-0 mx-auto">
+      <h1 class="my-4 text-center" id="notice"><%= notice %></h1>
+  		<h2 class="mt-4 text-center">Event</h2>
+  		<h5 class="mt-4 text-center border">Title</h5>
+  		<p class="text-center"><%= @event.title %></p>
+  		<h5 class="mt-4 text-center border">Content</h5>
+  		<p class="text-center"><%= @event.content %></p>
+  		<div class="mt-5 text-center">
+  		  <%= link_to 'Back', group_path(@group), class: "back" %>
+  		</div>
   </div>
 </div>

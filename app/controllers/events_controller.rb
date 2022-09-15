@@ -10,7 +10,7 @@ class EventsController < ApplicationController
     @group = Group.find(params[:group_id])
     @event = @group.events.new(event_params)
     if @event.save
-      redirect_to group_event_path(@group, @event)
+      redirect_to group_event_path(@group, @event), notice: "送信が完了しました"
     else
       render :new
     end
@@ -30,7 +30,7 @@ class EventsController < ApplicationController
     @group = Group.find(params[:group_id])
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      redirect_to group_event_path(@group,@event)
+      redirect_to group_event_path(@group,@event), notice: "編集が完了しました"
     else
       render :edit
     end
