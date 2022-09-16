@@ -37,9 +37,11 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    @group = Group.find(params[:group_id])
+    @events = @group.events
     @event = Event.find(params[:id])
     @event.destroy
-    redirect_to request.referer
+    #redirect_to request.referer
   end
 
   private
