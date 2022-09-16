@@ -30,7 +30,7 @@ class EventsController < ApplicationController
     @group = Group.find(params[:group_id])
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      redirect_to group_event_path(@group,@event), notice: "編集が完了しました"
+      redirect_to group_event_path(@group,@event)
     else
       render :edit
     end
