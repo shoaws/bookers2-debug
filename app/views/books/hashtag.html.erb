@@ -1,0 +1,12 @@
+<div>
+  <h2>ハッシュタグ #<%= @tag.hashname %></h2>
+  <ul>
+    <% @books.each do |book| %>
+      <li>
+        <%= link_to book_path(book) do %>
+          <%= book.title %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

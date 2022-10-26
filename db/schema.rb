@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_14_112538) do
+ActiveRecord::Schema.define(version: 2022_10_26_051652) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -48,6 +48,13 @@ ActiveRecord::Schema.define(version: 2022_09_14_112538) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "book_hashes", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "hashtag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -63,15 +70,6 @@ ActiveRecord::Schema.define(version: 2022_09_14_112538) do
     t.string "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "entries", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "room_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["room_id"], name: "index_entries_on_room_id"
-    t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -107,14 +105,11 @@ ActiveRecord::Schema.define(version: 2022_09_14_112538) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "messages", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "room_id", null: false
-    t.text "content"
+  create_table "hashtags", force: :cascade do |t|
+    t.string "hashname"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["room_id"], name: "index_messages_on_room_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
+    t.index ["hashname"], name: "index_hashtags_on_hashname", unique: true
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -160,10 +155,6 @@ ActiveRecord::Schema.define(version: 2022_09_14_112538) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "entries", "rooms"
-  add_foreign_key "entries", "users"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
-  add_foreign_key "messages", "rooms"
-  add_foreign_key "messages", "users"
 end
